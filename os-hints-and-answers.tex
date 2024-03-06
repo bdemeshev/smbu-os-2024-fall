@@ -3,9 +3,17 @@
 
 \usepackage{physics}
 
+% \usepackage{mathrsfs}
+
 \usepackage{tikzducks}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
 
 \usepackage{tikz} % картинки в tikz
+\usetikzlibrary{arrows}
+
 \usepackage{microtype} % свешивание пунктуации
 
 \usepackage{array} % для столбцов фиксированной ширины
@@ -179,7 +187,7 @@
 \begin{enumerate}
   \item 
     \begin{enumerate}
-      \item 
+      \item Оптимум: $(x_1 = 5, x_2=6)$, $z=21$.
       
       \item 
       \begin{align*}
@@ -193,8 +201,55 @@
     \end{enumerate}
   \item 
   \begin{enumerate}
-    \item 
+    \item Оптимум: $(x_1 = 2, x_2=6)$, $z=2$.
     
+
+    \definecolor{zzttqq}{rgb}{0.6,0.2,0}
+    \definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+    \definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+    \definecolor{qqwuqq}{rgb}{0,0.39215686274509803,0}
+    
+    \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm, scale=0.5]
+    \begin{axis}[
+    x=1cm,y=1cm,
+    axis lines=middle,
+    ymajorgrids=true,
+    xmajorgrids=true,
+    xmin=-1.620000000000001,
+    xmax=19.12666666666668,
+    ymin=-1.4400000000000006,
+    ymax=11.879999999999992,
+    xtick={-1,0,...,19},
+    ytick={-1,0,...,11},]
+    \clip(-1.62,-1.44) rectangle (19.12666666666668,11.88);
+    \fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (3,7) -- (2,6) -- (6,4) -- cycle;
+    \draw [line width=2pt,color=qqwuqq,domain=-1.62:19.12666666666668] plot(\x,{(--4--1*\x)/1});
+    \draw [line width=2pt,domain=-1.62:19.12666666666668] plot(\x,{(-14--1*\x)/-2});
+    \draw [line width=2pt,domain=-1.62:19.12666666666668] plot(\x,{(--10-1*\x)/1});
+    \draw [line width=2pt,domain=-1.62:19.12666666666668] plot(\x,{(--10-1*\x)/-2});
+    \draw [line width=2pt,color=zzttqq] (3,7)-- (2,6);
+    \draw [line width=2pt,color=zzttqq] (2,6)-- (6,4);
+    \draw [line width=2pt,color=zzttqq] (6,4)-- (3,7);
+    \begin{scriptsize}
+    \draw[color=qqwuqq] (-1.3533333333333342,2.78) node {$eq1$};
+    \draw[color=black] (-1.3533333333333342,7.68666666666666) node {$eq2$};
+    \draw[color=black] (-1.3533333333333342,11.433333333333325) node {$eq3$};
+    \draw[color=black] (7.353333333333338,-1.18) node {$eq4$};
+    \draw [fill=uuuuuu] (3,7) circle (2pt);
+    \draw[color=uuuuuu] (3.1,7.26) node {$A$};
+    \draw [fill=uuuuuu] (2,6) circle (2pt);
+    \draw[color=uuuuuu] (2.1,6.26) node {$B$};
+    \draw [fill=ududff] (6,4) circle (2.5pt);
+    \draw[color=ududff] (6.1,4.286666666666663) node {$C$};
+    \draw[color=zzttqq] (2.3933333333333344,6.806666666666661) node {$c$};
+    \draw[color=zzttqq] (3.9533333333333354,4.966666666666662) node {$a$};
+    \draw[color=zzttqq] (4.7,5.806666666666662) node {$b$};
+    \end{scriptsize}
+    \end{axis}
+    \end{tikzpicture}
+    
+
+
     \item 
     \begin{align*}
       x_1 + x_2 \to \max \\
@@ -239,6 +294,32 @@
     \item При $a \leq -6$ задача является неограниченной. 
     При $a > -6$ задача является ограниченной. 
   \end{enumerate}
+
+\item 
+\item 
+
+\item Обозначим список пересекаемых множеств буквой $\cF$, в этой задаче $\cF = \{D_1, D_2, D_3, D_4\}$.
+
+Пересечение всех множеств равно 
+\[
+  S = \cap_{D \in \cF} D.
+\] 
+
+Рассмотрим произвольные точки $A$ и $B$ из множества $S$. 
+
+По определению пересечения множеств, точки $A$ и $B$ лежат в любом из пересекаемых множеств $D \in \cF$. 
+Любое множество $D \in \cF$ по условию задачи выпуклое, поэтому $[A, B] \subseteq D$.
+
+Отрезок $[A, B]$ лежит в любом множестве $D \in \cF$, поэтому отрезок $[A, B]$ лежит в пересечении множеств $S$.
+
+\item 
+
+\item % 1.10
+$\hull(A, B, C, D)$, $A = (0, 1)$, $B = (4/3, 7/3)$, $C = (18/7, 12/7)$, $D = (3, 0)$.
+
+\item % 1.11
+$\hull(A, B, C)$, $A = (0, 1)$, $B = (3/ 11, 32/11)$, $C = (9, 0)$.
+
 \end{enumerate}
 
 \end{document}
