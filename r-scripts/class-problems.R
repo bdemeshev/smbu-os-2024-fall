@@ -11,6 +11,7 @@ A
 b = c(24, -16)
 constr = c('>=', '=')
 problem_38 = lp('min', f_coef, A, constr, b)
+problem_38
 problem_38$solution
 problem_38$objval
 
@@ -24,6 +25,7 @@ A
 b = c(12, 18)
 constr = c('>=', '>=')
 problem_39 = lp('min', f_coef, A, constr, b)
+problem_39
 problem_39$solution
 problem_39$objval
 
@@ -39,6 +41,7 @@ A
 b = c(1, 1)
 constr = c('=', '>=')
 problem_39p = lp('min', f_coef, A, constr, b)
+problem_39p
 problem_39p$solution
 problem_39p$objval
 
@@ -53,6 +56,7 @@ b = c(6, 12)
 constr = c('>=', '>=')
 problem_39pp = lp('min', f_coef, A, constr, b)
 
+problem_39pp
 problem_39pp$solution
 problem_39pp$objval
 
