@@ -109,8 +109,10 @@ http://web.tecnico.ulisboa.pt/mcasquilho/acad/or/ftp/FergusonUCLA_LP.pdf
 ## Семинар 8
 
 На семинаре:
+* из листков: 
 
 Домашнее задание:
+* из "симплекс-метод":
 
 ## Семинар 9
 
