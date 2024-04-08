@@ -15,6 +15,7 @@ problem_38
 problem_38$solution
 problem_38$objval
 
+
 # 3.9
 
 f_coef = c(11, 1, 2, 4)
