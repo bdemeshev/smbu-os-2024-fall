@@ -157,7 +157,7 @@
 
 \DeclareMathOperator{\Convex}{Convex}
 \DeclareMathOperator{\Hull}{Hull}
-\DeclareMathOperator{\hull}{\Hull}
+\DeclareMathOperator{\hull}{\Convex}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\cone}{Cone}
 
@@ -550,6 +550,75 @@
 
 \begin{enumerate}
   \item 
+  \[
+    \begin{cases}
+      w = -3y_1 +8 y_2 - 8 y_3 \to \min \\
+      -y_1 + 2y_2 +3y_3\geq -2  \\
+      -3y_1 + y_2 + y_3= 1 \\
+      y_1 -3 y_2 -2y_3= 5 \\
+      -y_1 + y_2 - y_3\geq 4 \\
+      y_1 \geq 0, y_2 \geq 0, y_3 \in \RR \\
+    \end{cases}  
+  \]
+  \item 
+\[
+\begin{cases}
+  w = 2y_1 - y_2 \to \max \\
+  y_1 + 2y_2 \leq 14  \\
+  2y_1 + y_2 \leq 10 \\
+  y_1 + y_2 \leq 8 \\
+  y_1 - y_2 \leq 2 \\
+  y_1 \geq 0, y_2 \in \RR \\
+\end{cases}  
+\]
+
+
+Допустимое множество в двойственной задаче: $\Convex(A, B, C, D)$, $A = (0, -2)$, $B = (0, 7)$, $C = (2, 6)$, $D = (4, 2)$.
+
+Оптимум в двойственной задаче: $y = D = (4, 2), w = 6$.
+
+Оптимум в исходной задаче: $x = (0, 1/3, 0, 4/3)$, $z= 6$.
+
+\item % 3
+
+
+Если $\Delta b_1 = 2$, то старая точка $D = (4, 2)$ остаётся оптимальной, $\Delta z = y_1 \Delta b_1 = 4 \cdot 2 = 8$.
+
+Если $\Delta b_1 = -2$, то новый оптимум в точке $A = (0, -2)$, $w_{\text{new}} = 2$, $\Delta z = -4$.
+
+Если $\Delta b_2 = 2$, то новый оптимум — $[C, D] = [(2, 6), (4, 2)]$. 
+Старая точка $D = (4, 2)$ остаётся оптимальной, $\Delta z = y_2 \Delta b_2 = 2 \cdot 2 = 4$.
+
+Если $\Delta b_2 = -2$, то новый оптимум
+
+При $\Delta z = 8$ нужно взять $\Delta b_1 = 2$.
+
+Значение $\Delta z = -8$ невозможно ни при каком $\Delta b_1$.
+
+\item % 4
+
+
+\begin{tabular}{lcccc}
+  Критерий & $(1, 1, 7, 0)$ & $(0, 0, 8, 0)$ & $(1, 3, 0, 3)$ & $(0, 4, 0, 4)$ \\
+  \midrule
+  $x$ — допустимое решение &  & &  & \\
+  Условия дополняющей нежёсткости &  &  &  & \\
+  $y$ — допустимое решение & & & & \\
+  $x$ и $y$ — оптимумы &  &  & & \\
+\end{tabular}
+
+
+\item % 5
+
+\begin{tabular}{lccc}
+  Критерий & $x_a = (20, -24, 4, 4)$ & $x_b = (0, 2, 0, 9)$ & $x_c = (6, -4, 6, 0)$ \\
+  \midrule
+  $x$ — допустимое решение & да & да & да \\
+  Условия дополняющей нежёсткости & нет & да & да \\
+  $y$ — допустимое решение & & нет, $(,,,)$ & да, $(,,,)$ \\
+  $x$ и $y$ — оптимумы & нет & нет & да \\
+\end{tabular}
+
 \end{enumerate}
 
 \section*{Транспортная задача}
