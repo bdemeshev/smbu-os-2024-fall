@@ -150,3 +150,34 @@ problem_314pp$solution
 problem_314pp$objval
 
 
+
+# 6.1
+wang = c(4, -3, 3, 2, -6)
+b = c(4, 4, 6)
+row1 = c(2, -1, 1, 1, 3)
+row2 = c(-1, 2, -2, -1, 1)
+row3 = c(3, 1, -1, 1, 2)
+A = rbind(row1, row2, row3)
+A
+xiao = c('=', '>=', '<=')
+
+problem_61 = lp('max', wang, A, xiao, b)
+problem_61
+problem_61$objval
+problem_61$solution
+
+# 6.2
+wang = c(4, -3, 3, 2, -6)
+b = c(4, 4, 6)
+row1 = c(2, -1, 1, 1, 3)
+row2 = c(-1, 2, -2, -1, 1)
+row3 = c(3, 1, -1, 1, 2)
+A = rbind(row1, row2, row3)
+A
+xiao = c('=', '>=', '<=')
+
+problem_62 = lp('max', wang, A, xiao, b)
+problem_62
+problem_62$objval
+problem_62$solution
+
