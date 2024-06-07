@@ -1,7 +1,6 @@
 % arara: xelatex
 \documentclass[12pt]{article}
 
-\usepackage{physics}
 
 % \usepackage{mathrsfs}
 
@@ -94,6 +93,13 @@
 
 \AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
 \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+%\usepackage{physics} % не рекомендуют его использовать
+% конфликтует много с кем, плохая реализация
+% https://tex.stackexchange.com/questions/471532/alternatives-to-the-physics-package
+\DeclareMathOperator{\bneck}{bneck}
+
 
 %% эконометрические сокращения
 \DeclareMathOperator{\Cov}{\mathbb{C}ov}
@@ -794,6 +800,33 @@ $a_3 = 16$ & \innerbox{0}{9} & \innerbox{6}{4}    & \innerbox{0}{6}  & \innerbox
 Предложенная точка не является оптимальной.
 
 \end{enumerate}
+
+
+
+\section*{Сети}
+
+\begin{enumerate}
+ \item
+\item[1.2]
+\begin{enumerate}
+ \item Например, $\bneck(v_1 - v_3 - v_7 - v_6 - v_2 - v_5 - v_8) = \min(2, 5, 1, 5, 3, 2) = 1$; $\max v(f) = 10$.
+ \item $S = \{ v_1, v_3, v_4, v_7\}$, $T = \{ v_2, v_5, v_6, v_8 \}$, $\min c(S, T) = 10$.
+\end{enumerate}
+\item[2.1] Кратчайшие маршруты из $v_1$ в $v_x$ с длиной $12$:
+$v_1 - v_2 - v_3 - v_6 - v_7 - v_x$, $v_1 - v_2 - v_3 - v_6 - v_7 - v_8 - v_x$.
+\item[2.2]
+\begin{enumerate}
+ \item Например, $\bneck(v_1 - v_4 - v_3 - v_2 - v_6 - v_x) = \min\{ 3, 2, 1, 7, 7\} = 1$.
+Затем, $\bneck(v_1 - v_4 - v_8 - v_9 - v_x) = \min\{ 2, 8, 1, 5\} = 1$, $v(f) = 12$.
+\item Например, $S = \{ v_1, v_3, v_4, v_7, v_8 \}$, $T = \{v_2, v_5, v_6, v_9, v_x \}$, $\min c(S, T) = 12$.
+Или $S = \{ v_1, v_3, v_4, v_8 \}$, $T = \{v_2, v_5, v_6, v_7, v_9, v_x \}$.
+\end{enumerate}
+\item[3]
+
+\end{enumerate}
+
+
+
 
 \end{document}
 
