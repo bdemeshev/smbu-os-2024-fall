@@ -1,0 +1,490 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+% \usepackage{physics}
+
+
+\usepackage{tikzducks}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+
+\newcommand{\smallduck}{\begin{tikzpicture}[scale=0.3]
+    \duck[
+        cape=black,
+        hat=black,
+        mask=black
+    ]
+    \end{tikzpicture}}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{Ответы к экзамену}
+\lfoot{Методы оптимальных решений}
+\cfoot{}
+\rfoot{}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{tcolorbox} % рамочки!
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+\setcounter{MaxMatrixCols}{20}
+% by crazy default pmatrix supports only 10 cols :)
+
+
+\usepackage{fontspec}
+\usepackage{libertine}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+
+\DeclareMathOperator{\Convex}{Convex}
+
+\newcommand \cN{\mathcal{N}}
+\newcommand \RR{\mathbb{R}}
+\newcommand \NN{\mathbb{N}}
+
+
+
+% transportation table 
+% https://tex.stackexchange.com/questions/83713/how-to-make-a-transportation-tableau
+\newcolumntype{C}{@{}c@{}}
+\newcommand{\bottombox}[1]{\makebox[2em][r]{#1}\hspace*{\tabcolsep}\hspace*{2em}}%
+\newcommand{\innerbox}[2]{%
+    \begin{tabular}[b]{c|c}
+       \rule{2em}{0pt}\rule[-2ex]{0pt}{5ex} & \makebox[0.9em]{\footnotesize{#2}} \\\cline{2-2}
+       \multicolumn{2}{r}{{#1}\hspace*{1.5\tabcolsep}\hspace*{2em}\rule[-2ex]{0pt}{5ex}}
+    \end{tabular}}
+\renewcommand{\arraystretch}{1.25}
+
+% circled text in math mode
+% https://tex.stackexchange.com/questions/67127/creating-a-circled-operator-which-expands-into-a-lozenge
+\makeatletter
+\newcommand*\comp[2][]{%
+  \ensuremath{%
+    \mathbin{%
+      \mathpalette{\comp@aux{#1}}{#2}%
+    }%
+  }%
+}
+\newdimen\comp@unit
+\newcommand*{\comp@aux}[3]{%
+  #2%
+  \mskip.5\thinmuskip\nonscript\mskip-.25\thinmuskip
+  \begingroup
+    \sbox0{%
+      $%
+        \m@th % \mathsurround=0pt
+        #2% \displaystyle, \textstyle, ...
+        \mkern9mu %
+      $%
+    }%
+  \edef\x{\endgroup
+    \comp@unit=\the\wd0 %
+  }\x
+  \tikz[baseline=(char.base)]{%
+    \node[
+      rectangle,
+      draw,
+      minimum height=2\comp@unit,
+      minimum width=2\comp@unit,
+      rounded corners=\comp@unit,
+      inner sep=.33\comp@unit,
+      line width=.05\comp@unit,
+      #1%
+    ] (char) {%
+      $%
+        \m@th % \mathsurround=0pt
+        #2% \displaystyle, \textstyle, ...
+        \rule{0pt}{\comp@unit}%
+        #3%
+      $%
+    };%
+  }%
+  \mskip.5\thinmuskip\nonscript\mskip-.25\thinmuskip
+}
+\makeatother
+
+
+
+\begin{document}
+
+\section*{Вариант 1}
+
+
+\begin{enumerate}
+  \item 
+  \begin{enumerate}
+    \item Оптимум равен 26, $3A + C$ или $2B + 2A$.
+    \item Оптимум равен 26, $3A + C$ или $2B + 2A$.
+    \item 
+    \[
+    \begin{cases}
+      5x_a + 8x_b + 11 x_c \to \max \\
+      3x_a + 5x_b + 7x_c \leq 16 \\
+      x_a, x_b, x_c \in \{0, 1, 2, 3, \ldots \}        
+    \end{cases}
+    \]
+  \end{enumerate}
+  \item 
+  \begin{enumerate}
+    \item Оптимум — $\Convex(A, B)$, $94$.
+    
+    \begin{tabular}{c|C|C|C|}
+  $A$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{2}{2}   & \innerbox{2}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{8}{1} & \innerbox{5}{7}    & \innerbox{}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{3}   & \innerbox{}{6} & \innerbox{9}{4}   \\\hline
+\end{tabular}
+    
+\begin{tabular}{c|C|C|C|}
+  $B$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{4}{2}   & \innerbox{}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{8}{1} & \innerbox{3}{7}    & \innerbox{2}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{3}   & \innerbox{}{6} & \innerbox{9}{4}   \\\hline
+\end{tabular}
+
+\item Систему можно записать в матричном виде $A x = b$, где 
+\[
+A = \begin{pmatrix}
+  1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+  1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\
+  0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
+\end{pmatrix}
+\]
+
+\item Оптимум — $\Convex(C, D)$, $126$.
+    
+\begin{tabular}{c|C|C|C|}
+$A$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{}{2}   & \innerbox{4}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{}{$\infty$} & \innerbox{7}{7}    & \innerbox{6}{6}       \\\hline
+$a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
+\end{tabular}
+
+\begin{tabular}{c|C|C|C|}
+$B$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{4}{2}   & \innerbox{}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{}{$\infty$} & \innerbox{3}{7}    & \innerbox{10}{6}       \\\hline
+$a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
+\end{tabular}
+
+
+\end{enumerate}
+  \item 
+\begin{enumerate}
+  \item 8, $A_1 \to A_2 \to A_4 \to A_7 \to A_8$ или $A_1 \to A_2 \to A_4 \to A_7 \to A_6 \to A_8$.
+  \item 4, $A_2 \to A_4 \to A_7$
+  \item Матрица смежности $M$ состоит только из 0 или 1. 
+\end{enumerate}
+\item 
+\begin{enumerate}
+  \item Допустимое множество $\Convex(A, B, C)$, $A = (-2, 6)$, $B = (2, 4)$, $C = (1, 10)$, оптимум равен 48.
+  \item Оптимум 48, $x = (0, 1, 0, 5)$.
+  \item $b_1 \leq 9/2$ или $\Delta b_1 \leq 3/2$.
+\end{enumerate}
+\item 
+
+\begin{tabular}{ccccccc|c}
+  \toprule
+    & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $b$  \\ \midrule
+$x_2$ & 7 & 1 & 0 & 5 & 0 & -3 & 24  \\
+$x_3$ & 1/2 & 0 & 1 & 1/2 & 0 & -3/2 & 3/2  \\
+$x_5$ & 0 & 0 & 0 & -4 & 1 & -4 & 3  \\ \midrule
+$\min z$ & -1 & 0 & 0 & -3 & 0 & 0 & $-5 - z$  \\ \bottomrule
+\end{tabular}
+
+Все решения: $x = (0, 24 + 3x_6, 3/2 + 3/2x_6, 0, 3 + 4x_6)$, $x_6 \geq 0$. 
+
+\item 
+\[
+\begin{cases}
+  21x_1 + 6x_2 + 7x_3 + 7(a_4 - b_4) \to \max \\
+  6x_1 + 2x_2 + 3x_3 + 2(a_4 - b_4) = 24 \\
+  x_1 + x_2 + x_3 + 5(a_4 - b_4) - x_5 = 12 \\
+  x_1, x_2, x_3, a_4, b_4, x_5 \leq 0    
+\end{cases}
+\]
+
+\item 
+\begin{enumerate}
+  \item Да, столбцы независимы:
+  \[
+  \col_5 A = \begin{pmatrix}
+    0 \\ 
+    2 \\ 
+    3 \\
+  \end{pmatrix}.
+  \]
+  \item Нет, столбцы зависимы:
+  \[
+  \col_1 A = \begin{pmatrix}
+    1 \\
+    2 \\
+    4 \\
+  \end{pmatrix}, \quad 
+  \col_3 A = \begin{pmatrix}
+    -1 \\
+    0 \\
+    -1 \\
+  \end{pmatrix}, \quad 
+  \col_5 A = \begin{pmatrix}
+    0 \\ 
+    2 \\ 
+    3 \\
+  \end{pmatrix}, \quad 
+  \col_1 A + \col_3 A = \col_5 A
+  \]
+  \item Нет, $x_5  = -1$, а должно быть $x_5 \geq 0$. 
+  \item Да, столбцы независимы:
+  \[
+    \col_1 A = \begin{pmatrix}
+      1 \\
+      2 \\
+      4 \\
+    \end{pmatrix}, \quad 
+    \col_3 A = \begin{pmatrix}
+      -1 \\
+      0 \\
+      -1 \\
+    \end{pmatrix}
+  \]
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\section*{Вариант 2}
+
+
+\begin{enumerate}
+  \item 
+  \begin{enumerate}
+    \item Оптимум равен 26, $3A + C$ или $2B + 2A$.
+    \item Оптимум равен 26, $3A + C$ или $2B + 2A$.
+    \item 
+    \[
+    \begin{cases}
+      5x_a + 8x_b + 11 x_c \to \max \\
+      3x_a + 5x_b + 7x_c \leq 16 \\
+      x_a, x_b, x_c \in \{0, 1, 2, 3, \ldots \}        
+    \end{cases}
+    \]
+  \end{enumerate}
+  \item 
+  \begin{enumerate}
+    \item Оптимум — $\Convex(A, B)$, $94$.
+    
+    \begin{tabular}{c|C|C|C|}
+  $A$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{2}{2}   & \innerbox{2}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{8}{1} & \innerbox{5}{7}    & \innerbox{}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{3}   & \innerbox{}{6} & \innerbox{9}{4}   \\\hline
+\end{tabular}
+    
+\begin{tabular}{c|C|C|C|}
+  $B$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{4}{2}   & \innerbox{}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{8}{1} & \innerbox{3}{7}    & \innerbox{2}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{3}   & \innerbox{}{6} & \innerbox{9}{4}   \\\hline
+\end{tabular}
+
+\item Систему можно записать в матричном виде $A x = b$, где 
+\[
+A = \begin{pmatrix}
+  1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+  1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\
+  0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 \\
+\end{pmatrix}
+\]
+
+\item Оптимум — $\Convex(C, D)$, $126$.
+    
+\begin{tabular}{c|C|C|C|}
+$A$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{}{2}   & \innerbox{4}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{}{$\infty$} & \innerbox{7}{7}    & \innerbox{6}{6}       \\\hline
+$a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
+\end{tabular}
+
+\begin{tabular}{c|C|C|C|}
+$B$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{1}   & \innerbox{4}{2}   & \innerbox{}{1}   \\\hline
+$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
+$a_3 = 13$ & \innerbox{}{$\infty$} & \innerbox{3}{7}    & \innerbox{10}{6}       \\\hline
+$a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
+\end{tabular}
+
+
+\end{enumerate}
+  \item 
+\begin{enumerate}
+  \item 8, $A_1 \to A_2 \to A_4 \to A_7 \to A_8$ или $A_1 \to A_2 \to A_4 \to A_7 \to A_6 \to A_8$.
+  \item 4, $A_2 \to A_4 \to A_7$
+  \item Матрица смежности $M$ состоит только из 0 или 1. 
+\end{enumerate}
+\item 
+\begin{enumerate}
+  \item Допустимое множество $\Convex(A, B, C)$, $A = (-2, 6)$, $B = (2, 4)$, $C = (1, 10)$, оптимум равен 48.
+  \item Оптимум 48, $x = (0, 1, 0, 5)$.
+  \item $b_1 \leq 9/2$ или $\Delta b_1 \leq 3/2$.
+\end{enumerate}
+\item 
+
+\begin{tabular}{ccccccc|c}
+  \toprule
+    & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $b$  \\ \midrule
+$x_2$ & 7 & 1 & 0 & 5 & 0 & -3 & 24  \\
+$x_3$ & 1/2 & 0 & 1 & 1/2 & 0 & -3/2 & 3/2  \\
+$x_5$ & 0 & 0 & 0 & -4 & 1 & -4 & 3  \\ \midrule
+$\min z$ & -1 & 0 & 0 & -3 & 0 & 0 & $-5 - z$  \\ \bottomrule
+\end{tabular}
+
+Все решения: $x = (0, 24 + 3x_6, 3/2 + 3/2x_6, 0, 3 + 4x_6)$, $x_6 \geq 0$. 
+
+\item 
+\[
+\begin{cases}
+  21x_1 + 6x_2 + 7x_3 + 7(a_4 - b_4) \to \max \\
+  6x_1 + 2x_2 + 3x_3 + 2(a_4 - b_4) = 24 \\
+  x_1 + x_2 + x_3 + 5(a_4 - b_4) - x_5 = 12 \\
+  x_1, x_2, x_3, a_4, b_4, x_5 \leq 0    
+\end{cases}
+\]
+
+\item 
+\begin{enumerate}
+  \item Да, столбцы независимы:
+  \[
+  \col_5 A = \begin{pmatrix}
+    0 \\ 
+    2 \\ 
+    3 \\
+  \end{pmatrix}.
+  \]
+  \item Нет, столбцы зависимы:
+  \[
+  \col_1 A = \begin{pmatrix}
+    1 \\
+    2 \\
+    4 \\
+  \end{pmatrix}, \quad 
+  \col_3 A = \begin{pmatrix}
+    -1 \\
+    0 \\
+    -1 \\
+  \end{pmatrix}, \quad 
+  \col_5 A = \begin{pmatrix}
+    0 \\ 
+    2 \\ 
+    3 \\
+  \end{pmatrix}, \quad 
+  \col_1 A + \col_3 A = \col_5 A
+  \]
+  \item Нет, $x_5  = -1$, а должно быть $x_5 \geq 0$. 
+  \item Да, столбцы независимы:
+  \[
+    \col_1 A = \begin{pmatrix}
+      1 \\
+      2 \\
+      4 \\
+    \end{pmatrix}, \quad 
+    \col_3 A = \begin{pmatrix}
+      -1 \\
+      0 \\
+      -1 \\
+    \end{pmatrix}
+  \]
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+
+\end{document}
+
