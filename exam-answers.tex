@@ -249,7 +249,19 @@ $a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
 \begin{enumerate}
   \item 8, $A_1 \to A_2 \to A_4 \to A_7 \to A_8$ или $A_1 \to A_2 \to A_4 \to A_7 \to A_6 \to A_8$.
   \item 4, $A_2 \to A_4 \to A_7$
-  \item Матрица смежности $M$ состоит только из 0 или 1. 
+  \item Матрица смежности $M$ состоит только из 0 или 1:
+  \[
+    M = \begin{pmatrix}
+      0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+      0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+      0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    \end{pmatrix}
+    \]   
 \end{enumerate}
 \item 
 \begin{enumerate}
@@ -268,7 +280,7 @@ $x_5$ & 0 & 0 & 0 & -4 & 1 & -4 & 3  \\ \midrule
 $\min z$ & -1 & 0 & 0 & -3 & 0 & 0 & $-5 - z$  \\ \bottomrule
 \end{tabular}
 
-Все решения: $x = (0, 24 + 3x_6, 3/2 + 3/2x_6, 0, 3 + 4x_6)$, $x_6 \geq 0$. 
+Все решения: $x = (0, 24 + 3x_6, 3/2 + 3/2x_6, 0, 3 + 4x_6, x_6)$, $x_6 \geq 0$. 
 
 \item 
 \[
@@ -336,35 +348,35 @@ $\min z$ & -1 & 0 & 0 & -3 & 0 & 0 & $-5 - z$  \\ \bottomrule
 \begin{enumerate}
   \item 
   \begin{enumerate}
-    \item Оптимум равен 26, $3A + C$ или $2B + 2A$.
-    \item Оптимум равен 26, $3A + C$ или $2B + 2A$.
+    \item Оптимум равен 21, $2A + C$ или $A + 2B$.
+    \item Оптимум равен 21, $2A + C$ или $A + 2B$.
     \item 
     \[
     \begin{cases}
       5x_a + 8x_b + 11 x_c \to \max \\
-      3x_a + 5x_b + 7x_c \leq 16 \\
+      3x_a + 5x_b + 7x_c \leq 13 \\
       x_a, x_b, x_c \in \{0, 1, 2, 3, \ldots \}        
     \end{cases}
     \]
   \end{enumerate}
   \item 
   \begin{enumerate}
-    \item Оптимум — $\Convex(A, B)$, $94$.
+    \item Оптимум — $\Convex(A, B)$, $118$.
     
     \begin{tabular}{c|C|C|C|}
   $A$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
-$a_1 = 4$ & \innerbox{}{1}   & \innerbox{2}{2}   & \innerbox{2}{1}   \\\hline
-$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
-$a_3 = 13$ & \innerbox{8}{1} & \innerbox{5}{7}    & \innerbox{}{6}       \\\hline
-$a_4 = 9$ & \innerbox{}{3}   & \innerbox{}{6} & \innerbox{9}{4}   \\\hline
+$a_1 = 4$ & \innerbox{}{3}   & \innerbox{2}{3}   & \innerbox{2}{2}   \\\hline
+$a_2 = 3$ & \innerbox{}{6} & \innerbox{3}{4}   & \innerbox{}{9}       \\\hline
+$a_3 = 13$ & \innerbox{8}{2} & \innerbox{5}{7}    & \innerbox{}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{5}   & \innerbox{}{7} & \innerbox{9}{5}   \\\hline
 \end{tabular}
     
 \begin{tabular}{c|C|C|C|}
   $B$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
-$a_1 = 4$ & \innerbox{}{1}   & \innerbox{4}{2}   & \innerbox{}{1}   \\\hline
-$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
-$a_3 = 13$ & \innerbox{8}{1} & \innerbox{3}{7}    & \innerbox{2}{6}       \\\hline
-$a_4 = 9$ & \innerbox{}{3}   & \innerbox{}{6} & \innerbox{9}{4}   \\\hline
+$a_1 = 4$ & \innerbox{}{3}   & \innerbox{4}{3}   & \innerbox{}{2}   \\\hline
+$a_2 = 3$ & \innerbox{}{6} & \innerbox{3}{4}   & \innerbox{}{9}       \\\hline
+$a_3 = 13$ & \innerbox{8}{2} & \innerbox{3}{7}    & \innerbox{2}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{5}   & \innerbox{}{7} & \innerbox{9}{5}   \\\hline
 \end{tabular}
 
 \item Систему можно записать в матричном виде $A x = b$, где 
@@ -380,22 +392,22 @@ A = \begin{pmatrix}
 \end{pmatrix}
 \]
 
-\item Оптимум — $\Convex(C, D)$, $126$.
+\item Оптимум — $\Convex(A, B)$, $118$, не изменяется.
     
 \begin{tabular}{c|C|C|C|}
-$A$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
-$a_1 = 4$ & \innerbox{}{1}   & \innerbox{}{2}   & \innerbox{4}{1}   \\\hline
-$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
-$a_3 = 13$ & \innerbox{}{$\infty$} & \innerbox{7}{7}    & \innerbox{6}{6}       \\\hline
-$a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
+  $A$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{3}   & \innerbox{2}{3}   & \innerbox{2}{2}   \\\hline
+$a_2 = 3$ & \innerbox{}{6} & \innerbox{3}{4}   & \innerbox{}{$\infty$}       \\\hline
+$a_3 = 13$ & \innerbox{8}{2} & \innerbox{5}{7}    & \innerbox{}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{5}   & \innerbox{}{7} & \innerbox{9}{5}   \\\hline
 \end{tabular}
-
+    
 \begin{tabular}{c|C|C|C|}
-$B$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
-$a_1 = 4$ & \innerbox{}{1}   & \innerbox{4}{2}   & \innerbox{}{1}   \\\hline
-$a_2 = 3$ & \innerbox{}{4} & \innerbox{3}{3}   & \innerbox{}{8}       \\\hline
-$a_3 = 13$ & \innerbox{}{$\infty$} & \innerbox{3}{7}    & \innerbox{10}{6}       \\\hline
-$a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
+  $B$  & $b_1 = 8$         & $b_2 = 10$             & $b_3 = 11$         \\\hline
+$a_1 = 4$ & \innerbox{}{3}   & \innerbox{4}{3}   & \innerbox{}{2}   \\\hline
+$a_2 = 3$ & \innerbox{}{6} & \innerbox{3}{4}   & \innerbox{}{$\infty$}       \\\hline
+$a_3 = 13$ & \innerbox{8}{2} & \innerbox{3}{7}    & \innerbox{2}{6}       \\\hline
+$a_4 = 9$ & \innerbox{}{5}   & \innerbox{}{7} & \innerbox{9}{5}   \\\hline
 \end{tabular}
 
 
@@ -404,12 +416,24 @@ $a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
 \begin{enumerate}
   \item 8, $A_1 \to A_2 \to A_4 \to A_7 \to A_8$ или $A_1 \to A_2 \to A_4 \to A_7 \to A_6 \to A_8$.
   \item 4, $A_2 \to A_4 \to A_7$
-  \item Матрица смежности $M$ состоит только из 0 или 1. 
+  \item Матрица смежности $M$ состоит только из 0 или 1:
+  \[
+  M = \begin{pmatrix}
+    0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  \end{pmatrix}
+  \]
 \end{enumerate}
 \item 
 \begin{enumerate}
   \item Допустимое множество $\Convex(A, B, C)$, $A = (-2, 6)$, $B = (2, 4)$, $C = (1, 10)$, оптимум равен 48.
-  \item Оптимум 48, $x = (0, 1, 0, 5)$.
+  \item Оптимум 48, $x = (5, 1, 0, 0)$.
   \item $b_1 \leq 9/2$ или $\Delta b_1 \leq 3/2$.
 \end{enumerate}
 \item 
@@ -417,21 +441,21 @@ $a_4 = 9$ & \innerbox{8}{3}   & \innerbox{}{6} & \innerbox{1}{4}   \\\hline
 \begin{tabular}{ccccccc|c}
   \toprule
     & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ & $b$  \\ \midrule
-$x_2$ & 7 & 1 & 0 & 5 & 0 & -3 & 24  \\
-$x_3$ & 1/2 & 0 & 1 & 1/2 & 0 & -3/2 & 3/2  \\
-$x_5$ & 0 & 0 & 0 & -4 & 1 & -4 & 3  \\ \midrule
-$\min z$ & -1 & 0 & 0 & -3 & 0 & 0 & $-5 - z$  \\ \bottomrule
+$x_2$ & 1 & 7 & 0 & 5 & -3 & 0 & 24  \\
+$x_3$ & 0 & 1/2 & 1 & 1/2 & -3/2 & 0 & 3/2  \\
+$x_5$ & 0 & 0 & 0 & -4 & -4 & 1 & 3  \\ \midrule
+$\min z$ & 0 & -1 & 0 & -3 & 0 & 0 & $-5 - z$  \\ \bottomrule
 \end{tabular}
 
-Все решения: $x = (0, 24 + 3x_6, 3/2 + 3/2x_6, 0, 3 + 4x_6)$, $x_6 \geq 0$. 
+Все решения: $x = (24 + 3x_5, 0, 3/2 + 3/2x_5, 0, x_5, 3 + 4x_5)$, $x_5 \geq 0$. 
 
 \item 
 \[
 \begin{cases}
-  21x_1 + 6x_2 + 7x_3 + 7(a_4 - b_4) \to \max \\
-  6x_1 + 2x_2 + 3x_3 + 2(a_4 - b_4) = 24 \\
-  x_1 + x_2 + x_3 + 5(a_4 - b_4) - x_5 = 12 \\
-  x_1, x_2, x_3, a_4, b_4, x_5 \leq 0    
+  6(a_1 - b_1) + 21x_2 + 7x_3 + 7x_4 \to \max \\
+  2(a_1 - b_1) + 6x_2 + 3x_3 +2x_4 = 24 \\
+  a_1 - b_1 + x_2 + x_3 + 5x_4 - x_5 = 12 \\
+  a_1, b_1, x_2, x_3, x_4, x_5 \leq 0    
 \end{cases}
 \]
 
